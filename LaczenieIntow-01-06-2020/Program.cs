@@ -11,24 +11,11 @@ namespace LaczenieIntow_01_06_2020
         {
             public int Compare(int x, int y)
             {
-                Stack<int> stackX = new Stack<int>();
-                Stack<int> stackY = new Stack<int>();
-                int xCyfra = 0;
-                int yCyfra = 0;
-                while (x != 0)
-                    {
-                        xCyfra = x % 10;
-                        x /= 10;
-                        stackX.Push(xCyfra);
-                }
-                while (y != 0)
-                {
-                    yCyfra = y % 10;
-                    y /= 10;
-                    stackY.Push(yCyfra);
-                }
+                Stack<int> stackX = CreateStack(x);
+                Stack<int> stackY = CreateStack(y);
                 int j = 0;
                 int k = 0;
+
                 while (j == k)
                 {
                     if (Numbers.TheBiggest)
@@ -51,7 +38,24 @@ namespace LaczenieIntow_01_06_2020
                         break;
                 }
                 return 0;
+            }
 
+            private Stack<int> CreateStack(int x)
+            {
+                Stack<int> stackX = new Stack<int>();
+                int xNumber = 0;
+                if (x != 0)
+                {
+                    while (x != 0)
+                    {
+                        xNumber = x % 10;
+                        x /= 10;
+                        stackX.Push(xNumber);
+                    }
+                }
+                else
+                    stackX.Push(x);
+                return stackX;
             }
         }
         public class Numbers
@@ -73,7 +77,7 @@ namespace LaczenieIntow_01_06_2020
             private string GetNumber(bool bigger)
             {
                 string getNumber ="";
-                theBiggest = bigger;
+                TheBiggest = bigger;
                 Array.Sort(number, comparer);
                 for (int i = 0; i < number.Length; i++)
                 {
