@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace LaczenieIntow_01_06_2020
 {
     class Numbers
     {
-        int[] number = new int[4];
+        List<int> numbers = new List<int>();
         public void ReadNumbers()
         {
-            Console.WriteLine("Type 4 numbers");
-            for (int i = 0; i < 4; i++)
+            Console.WriteLine("Type numbers - if u want to end, type -1");
+            while (true)
             {
-                Console.WriteLine(i + 1 + " number: ");
                 if (!int.TryParse(Console.ReadLine(), out int parasedValue))
-                {
-                    i--;
                     continue;
-                }
-                number[i] = Math.Abs(parasedValue);
+                if (parasedValue == -1)
+                    break;
+                numbers.Add(Math.Abs(parasedValue));
             }
         }
 
@@ -26,9 +25,9 @@ namespace LaczenieIntow_01_06_2020
         {
             NewComparer comparer = new NewComparer(bigger);
             StringBuilder getNumber = new StringBuilder();
-            Array.Sort(number, comparer);
-            for (int i = 0; i < number.Length; i++)
-                getNumber.Append(number[i]);
+            numbers.Sort(comparer);
+            for (int i = 0; i < numbers.Count; i++)
+                getNumber.Append(numbers[i]);
 
             return getNumber;
         }
