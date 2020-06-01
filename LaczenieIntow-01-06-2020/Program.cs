@@ -31,7 +31,7 @@ namespace LaczenieIntow_01_06_2020
                 int k = 0;
                 while (j == k)
                 {
-                    if (Numbers.theBiggest)
+                    if (Numbers.TheBiggest)
                     {
                         if (stackX.Peek() < stackY.Peek())
                             return 1;
@@ -56,7 +56,7 @@ namespace LaczenieIntow_01_06_2020
         }
         public class Numbers
         {
-            public static bool theBiggest { get; private set; }
+            public static bool TheBiggest { get; private set; }
             NewComparer comparer = new NewComparer();
             
             int[] number = new int[4];
